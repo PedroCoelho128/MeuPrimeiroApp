@@ -16,7 +16,33 @@ const data = [
   { id: '3', text: 'Kiwi', imageUrl: 'https://media.istockphoto.com/id/525151431/pt/foto/kiwi-castanho-da-ilha-do-norte-apteryx-mantelli.jpg?s=612x612&w=0&k=20&c=60ihZmlAo3eeqOn5li0Qnx5zzhmK9KBKY5O_YaQW34c=' },
 ];
 
-
+const Home = () => {
+  const handleNavigateToLogin = () => {
+    router.push('/');
+  };
+ 
+  const renderItem = ({ item }: { item: ListItem }) => (
+    <View style={styles.listItem}>
+      <Image source={{ uri: item.imageUrl }} style={styles.image} />
+      <Text>{item.text}</Text>
+    </View>
+  );
+ 
+  return (
+    <View style={styles.container}>
+      <Text style={styles.successText}>Login com Sucesso!!</Text>
+     
+      <FlatList
+        data={data}
+        keyExtractor={(item) => item.id}
+        renderItem={renderItem}
+      />
+ 
+      <StyledButton title='Voltar ao login' onPress={handleNavigateToLogin} />
+      <StatusBar style='auto' />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   successText: {
